@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Survey</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        #chat-container {
+            height: 500px;
+            border: 1px solid #ccc;
+            padding: 20px;
+            overflow-y: auto;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+        
+        #user-input-container {
+            display: flex;
+            margin-bottom: 20px;
+        }
+        
+        #user-input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        
+        #send-button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+        
+        #options-container {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+            justify-content: center;
+        }
+        
+        /* Styling for messages */
+        .message {
+            margin-bottom: 16px;
+            padding: 12px 16px;
+            border-radius: 8px;
+            max-width: 85%;
+            /*box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);*/
+        }
+
+        .bot-message, .trisha-message {
+            background-color: #f1f3f5;
+            border-left: 4px solid #f1f3f5;
+            margin-right: auto;
+        }
+
+        .you-message {
+            background-color: #0080FF;
+            border-right: 4px solid #0080FF;
+            margin-left: auto;
+        }
+
+        .message-sender {
+            font-weight: bold;
+            margin-bottom: 6px;
+            color: #343a40;
+        }
+
+        .message-content {
+            color: #212529;
+            line-height: 1.5;
+        }
+
+        .you-message .message-sender,
+        .you-message .message-content {
+            color: white; /* Makes all text white */
+        }
+
+        /* Styling for the pause indicator */
+        .pause-indicator {
+            margin: 25px 0 25px 15px;
+            padding: 10px;
+            background-color: #E5E5EA; /* Light gray bubble color like iMessage */
+            border-radius: 20px; /* More rounded like iMessage */
+            text-align: center;
+            width: 70px; /* Smaller width for just the dots */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            align-self: flex-start;
+        }
+
+        .pause-animation {
+            display: flex;
+            justify-content: center;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            margin: 0 5px;
+            background-color: #8E8E93; /* Gray color similar to iMessage */
+            border-radius: 50%;
+            animation: bounce 1.5s infinite ease-in-out;
+        }
+
+        .dot:nth-child(1) {
+            animation-delay: 0s;
+        }
+
+        .dot:nth-child(2) {
+            animation-delay: 0.3s;
+        }
+
+        .dot:nth-child(3) {
+            animation-delay: 0.6s;
+        }
+
+        @keyframes bounce {
+            0%, 60%, 100% {
+                transform: translateY(0);
+            }
+            30% {
+                transform: translateY(-8px); /* Vertical bounce like iMessage */
+            }
+        }
+
+
+        /* Styling for options */
+        .option-button {
+            background-color: #f8f9fa;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 1rem;
+        }
+
+        .option-button:hover:not(:disabled) {
+            background-color: #e9ecef;
+            border-color: #adb5bd;
+        }
+
+        .option-button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+        
+        /* Download and Return buttons */
+        .download-container, .return-container {
+            display: flex;
+            justify-content: center;
+            margin: 15px 0;
+        }
+
+        .download-button {
+            background-color: #17a2b8;
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            display: inline-block;
+            transition: background-color 0.3s;
+        }
+
+        .download-button:hover {
+            background-color: #138496;
+        }
+
+        .return-button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+        }
+
+        .return-button:hover {
+            background-color: #218838;
+        }
+
+        .redirect-message {
+            text-align: center;
+            color: #6c757d;
+            font-style: italic;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Health-Related Social Needs Questionnaire</h1>
+    
+    <div id="chat-container">
+        <!-- Chat messages will be displayed here -->
+    </div>
+    
+    <div id="options-container" style="display: none;">
+        <!-- Multiple choice options will be displayed here -->
+    </div>
+    
+    <div id="user-input-container">
+        <input type="text" id="user-input" placeholder="Type your response here...">
+        <button id="send-button">Send</button>
+    </div>
+    
+    <script>
+        // INLINE JAVASCRIPT - with 3-second delay and improved multiple-choice handling
+        document.addEventListener('DOMContentLoaded', function() {
+            const chatContainer = document.getElementById('chat-container');
+            const userInputContainer = document.getElementById('user-input-container');
+            const userInput = document.getElementById('user-input');
+            const sendButton = document.getElementById('send-button');
+            const optionsContainer = document.getElementById('options-container');
+            
+            // Global storage for the next question
+            let savedQuestionData = null;
+            
+            // 3-second pause duration
+            const PAUSE_DURATION = 3000;
+
+            // Add debugging function
+            function debugLog(message) {
+                console.log(message);
+            }
+
+            // Start the survey
+            startSurvey();
+
+            function startSurvey() {
+                debugLog('Starting survey...');
+                fetch('/start_survey', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    debugLog('Received first question data: ' + JSON.stringify(data.question));
+                    // For the first question, just display it
+                    displayQuestion(data.question);
+                })
+                .catch(error => {
+                    console.error('Error starting survey:', error);
+                    addMessageToChat('System', 'Error starting the survey. Please refresh the page.');
+                });
+            }
+
+            function displayQuestion(question) {
+                debugLog('Displaying question: ' + JSON.stringify(question));
+                debugLog('Question type: ' + question.type);  // Add this line
+                
+                // Add the question to the chat
+                addMessageToChat('TRISHA', question.text);
+                
+                // Handle different question types
+                if (question.type === 'multiple_choice') {
+                    debugLog('This is a multiple-choice question with options: ' + JSON.stringify(question.options));
+                    
+                    // Hide text input
+                    userInputContainer.style.display = 'none';
+                    
+                    // Clear and show options container
+                    optionsContainer.innerHTML = '';
+                    optionsContainer.style.display = 'flex';
+                    
+                    // Convert options object to array if it's not already an array
+                    let optionsArray = [];
+                    if (question.options && !Array.isArray(question.options)) {
+                        // If options is an object, extract the values into an array
+                        optionsArray = Object.values(question.options);
+                        debugLog('Converted options object to array: ' + JSON.stringify(optionsArray));
+                    } else if (question.options && Array.isArray(question.options)) {
+                        // If options is already an array, use it directly
+                        optionsArray = question.options;
+                    }
+                    
+                    // Check if we now have options to display
+                    if (optionsArray.length > 0) {
+                        debugLog('Adding ' + optionsArray.length + ' option buttons');
+                        
+                        optionsArray.forEach(option => {
+                            const button = document.createElement('button');
+                            button.classList.add('option-button');
+                            button.textContent = option;
+                            button.addEventListener('click', function() {
+                                debugLog('Option selected: ' + option);
+                                // Disable the button immediately to prevent multiple clicks
+                                button.disabled = true;
+                                handleUserResponse(option);
+                            });
+                            optionsContainer.appendChild(button);
+                        });
+                    } else {
+                        debugLog('WARNING: Multiple-choice question without valid options array');
+                        // Fallback to text input if options aren't available
+                        userInputContainer.style.display = 'flex';
+                        optionsContainer.style.display = 'none';
+                    }
+                } else {
+                    debugLog('This is a text input question');
+                    // Show text input and hide options
+                    userInputContainer.style.display = 'flex';
+                    optionsContainer.style.display = 'none';
+                    
+                    // Add prompt text if available
+                    if (question.prompt) {
+                        userInput.placeholder = question.prompt;
+                    } else {
+                        userInput.placeholder = 'Type your response here...';
+                    }
+                    
+                    // Focus on the input
+                    userInput.focus();
+                }
+                
+                // Scroll to bottom
+                chatContainer.scrollTop = chatContainer.scrollHeight;
+            }
+
+            function handleUserResponse(response) {
+                debugLog('Handling user response: ' + response);
+                
+                // Display user's response
+                addMessageToChat('You', response);
+                
+                // Clear input field
+                userInput.value = '';
+                
+                // Disable all inputs
+                disableAllInputs();
+                
+                // Add detailed debugging
+                debugLog('Sending to server with payload: ' + JSON.stringify({user_input: response}));
+                
+                // Send to server
+                fetch('/process_response', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        user_input: response
+                    })
+                })
+                .then(response => {
+                    debugLog('Server response status: ' + response.status);
+                    // Clone the response so we can look at the raw text
+                    const responseClone = response.clone();
+                    
+                    // Also look at the raw text to debug
+                    responseClone.text().then(text => {
+                        debugLog('Raw server response: ' + text);
+                    });
+                    
+                    return response.json();
+                })
+                .then(data => {
+                    debugLog('Received response from server: ' + JSON.stringify(data));
+                    
+                    // CRITICAL: Save the question data for later
+                    if (!data.survey_complete) {
+                        savedQuestionData = data.question;
+                        debugLog('Saved next question data: ' + JSON.stringify(savedQuestionData));
+                    }
+                    
+                    // Only show the bot's response for now
+                    if (data.bot_response) {
+                        addMessageToChat('TRISHA', data.bot_response);
+                        debugLog('Added bot response to chat');
+                    }
+                    
+                    // If survey is complete, handle completion
+                    if (data.survey_complete) {
+                        debugLog('Survey complete, handling completion');
+                        handleSurveyComplete(data);
+                    } else {
+                        debugLog('Survey continuing, showing pause indicator');
+                        // Show pause indicator
+                        showPauseIndicator();
+                    }
+                })
+                .catch(error => {
+                    console.error('Error details:', error);
+                    addMessageToChat('System', 'Error processing your response. Please try again.');
+                    enableAllInputs();
+                });
+            }
+            
+            function showPauseIndicator() {
+                debugLog('Showing pause indicator');
+                
+                // Create pause indicator
+                const pauseIndicator = document.createElement('div');
+                pauseIndicator.id = 'pause-indicator';
+                pauseIndicator.className = 'pause-indicator';
+                
+                pauseIndicator.innerHTML = `
+                    <div class="pause-animation">
+                        <div class="dot"></div>
+                        <div class="dot"></div>
+                        <div class="dot"></div>
+                    </div>
+                    <div class="pause-text"> </div>
+                `;
+                
+                // Add to chat
+                chatContainer.appendChild(pauseIndicator);
+                
+                // Scroll to make visible
+                chatContainer.scrollTop = chatContainer.scrollHeight;
+                
+                // Start the progress bar animation
+                //const progressBar = pauseIndicator.querySelector('.pause-progress');
+                //progressBar.style.animation = `progress ${PAUSE_DURATION/1000}s linear forwards`;
+                
+                debugLog('Set timeout for ' + PAUSE_DURATION + 'ms');
+                
+                // Set the timeout to remove the indicator and show the question
+                setTimeout(() => {
+                    debugLog('Timeout completed, removing pause indicator');
+                    
+                    // Remove the pause indicator
+                    if (document.getElementById('pause-indicator')) {
+                        chatContainer.removeChild(document.getElementById('pause-indicator'));
+                    }
+                    
+                    // Now display the saved question
+                    if (savedQuestionData) {
+                        debugLog('Displaying saved next question');
+                        displayQuestion(savedQuestionData);
+                        savedQuestionData = null; // Clear the saved data
+                    } else {
+                        debugLog('WARNING: No saved question data to display');
+                    }
+                    
+                    // Re-enable inputs
+                    enableAllInputs();
+                }, PAUSE_DURATION);
+            }
+            
+            function disableAllInputs() {
+                userInput.disabled = true;
+                sendButton.disabled = true;
+                
+                // Disable all option buttons
+                const optionButtons = optionsContainer.querySelectorAll('.option-button');
+                optionButtons.forEach(button => {
+                    button.disabled = true;
+                });
+                
+                debugLog('All inputs disabled');
+            }
+            
+            function enableAllInputs() {
+                userInput.disabled = false;
+                sendButton.disabled = false;
+                
+                // Enable all option buttons
+                const optionButtons = optionsContainer.querySelectorAll('.option-button');
+                optionButtons.forEach(button => {
+                    button.disabled = false;
+                });
+                
+                debugLog('All inputs enabled');
+            }
+
+            function handleSurveyComplete(data) {
+                debugLog('Handling survey completion');
+                
+                // Hide input elements
+                userInputContainer.style.display = 'none';
+                optionsContainer.style.display = 'none';
+                
+                // Show completion message
+                addMessageToChat('TRISHA', 'Have a good day!');
+                
+                // Add download link if available
+                /*if (data.log_file) {
+                    const downloadContainer = document.createElement('div');
+                    downloadContainer.classList.add('download-container');
+                    
+                    const downloadLink = document.createElement('a');
+                    downloadLink.href = `/download_log/${data.log_file}`;
+                    downloadLink.textContent = 'Download Conversation Log';
+                    downloadLink.classList.add('download-button');
+                    
+                    downloadContainer.appendChild(downloadLink);
+                    chatContainer.appendChild(downloadContainer);
+                    
+                    debugLog('Added download link for log file: ' + data.log_file);
+                }*/
+                
+                // Add return button
+                const returnButton = document.createElement('button');
+                returnButton.textContent = 'Return to Main Screen';
+                returnButton.classList.add('return-button');
+                returnButton.addEventListener('click', () => {
+                    window.location.href = '/';
+                });
+                
+                const returnContainer = document.createElement('div');
+                returnContainer.classList.add('return-container');
+                returnContainer.appendChild(returnButton);
+                chatContainer.appendChild(returnContainer);
+                
+                // Auto-redirect
+                const redirectMessage = document.createElement('div');
+                redirectMessage.classList.add('redirect-message');
+                redirectMessage.textContent = 'Redirecting to main screen in 60 seconds...';
+                chatContainer.appendChild(redirectMessage);
+                
+                debugLog('Setting redirect timeout for 60000ms');
+                
+                setTimeout(() => {
+                    debugLog('Redirecting to main screen');
+                    window.location.href = '/';
+                }, 60000);
+            }
+
+            function addMessageToChat(sender, message) {
+                const messageElement = document.createElement('div');
+                messageElement.classList.add('message');
+                messageElement.classList.add(sender.toLowerCase() + '-message');
+                
+                const senderElement = document.createElement('div');
+                senderElement.classList.add('message-sender');
+                senderElement.textContent = sender;
+                
+                const contentElement = document.createElement('div');
+                contentElement.classList.add('message-content');
+                
+                // Use innerHTML with replaced newlines instead of textContent
+                // First replace the newlines with <br> tags
+                // Also trim extra whitespace at the beginning of each line
+                const formattedMessage = message
+                    .split('\n')
+                    .map(line => line.trim())
+                    .join('<br>');
+                
+                contentElement.innerHTML = formattedMessage;
+                
+                messageElement.appendChild(senderElement);
+                messageElement.appendChild(contentElement);
+                
+                chatContainer.appendChild(messageElement);
+
+                    // Scroll to bottom
+                chatContainer.scrollTop = chatContainer.scrollHeight;
+                
+                debugLog('Added message from ' + sender + ': ' + message.substring(0, 30) + (message.length > 30 ? '...' : ''));
+            }
+
+            // Event listener for the send button
+            sendButton.addEventListener('click', function() {
+                const response = userInput.value.trim();
+                if (response) {
+                    handleUserResponse(response);
+                }
+            });
+
+            // Event listener for pressing Enter
+            userInput.addEventListener('keypress', function(event) {
+                if (event.key === 'Enter') {
+                    const response = userInput.value.trim();
+                    if (response) {
+                        handleUserResponse(response);
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

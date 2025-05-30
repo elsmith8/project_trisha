@@ -1,0 +1,176 @@
+/* CSS for guaranteed pause approach */
+
+/* Styling for messages */
+.message {
+    margin-bottom: 16px;
+    padding: 12px 16px;
+    border-radius: 8px;
+    max-width: 85%;
+    /*box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);*/
+}
+
+.bot-message, .trisha-message{
+    background-color: #0080FF;
+    border-left: 4px solid #0080FF;
+    margin-right: auto;
+}
+
+.you-message {
+    background-color: #f1f3f5;
+    border-right: 4px solid #f1f3f5;
+    margin-left: auto;
+}
+
+.message-sender {
+    font-weight: bold;
+    margin-bottom: 6px;
+    color: #343a40;
+}
+
+.message-content {
+    color: #212529;
+    line-height: 1.5;
+}
+
+.trisha-message .message-sender,
+.trisha-message .message-content {
+    color: white; /* Makes all text white */
+}
+
+/* Styling for the pause indicator */
+.pause-indicator {
+    margin: 25px auto;
+    padding: 15px;
+    background-color: #fffbeb;
+    border: 1px solid #ffe58f;
+    border-radius: 8px;
+    text-align: center;
+    width: 80%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.pause-animation {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    margin: 0 6px;
+    background-color: #1890ff;
+    border-radius: 50%;
+    animation: bounce 1.4s infinite ease-in-out both;
+}
+
+.dot:nth-child(1) {
+    animation-delay: -0.32s;
+}
+
+.dot:nth-child(2) {
+    animation-delay: -0.16s;
+}
+
+@keyframes bounce {
+    0%, 80%, 100% { 
+        transform: scale(0);
+    } 40% { 
+        transform: scale(1.0);
+    }
+}
+
+.pause-text {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 12px;
+    font-weight: 500;
+}
+
+.pause-progress {
+    height: 4px;
+    width: 100%;
+    background-color: #e6e6e6;
+    border-radius: 2px;
+    overflow: hidden;
+    position: relative;
+}
+
+.pause-progress::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 0%;
+    background-color: #1890ff;
+}
+
+@keyframes progress {
+    0% { width: 0%; }
+    100% { width: 100%; }
+}
+
+/* Styling for options */
+.option-button {
+    background-color: #f8f9fa;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    padding: 8px 16px;
+    margin: 5px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.option-button:hover:not(:disabled) {
+    background-color: #e9ecef;
+    border-color: #adb5bd;
+}
+
+.option-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Download and Return buttons */
+.download-container, .return-container {
+    display: flex;
+    justify-content: center;
+    margin: 15px 0;
+}
+
+.download-button {
+    background-color: #17a2b8;
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    display: inline-block;
+    transition: background-color 0.3s;
+}
+
+.download-button:hover {
+    background-color: #138496;
+}
+
+.return-button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+}
+
+.return-button:hover {
+    background-color: #218838;
+}
+
+.redirect-message {
+    text-align: center;
+    color: #6c757d;
+    font-style: italic;
+    margin: 15px 0;
+}

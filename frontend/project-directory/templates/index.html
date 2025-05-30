@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}Health-Related Social Needs Questionnaire{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center mt-5">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h2 class="text-center mb-0">Health-Related Social Needs Questionnaire</h2>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title text-center mb-4">Powered by TRISHA, an AI-Enabled Chatbot</h5>
+                <p class="card-text">
+                    TRISHA is a healthcare survey chatbot designed to help healthcare providers understand social challenges patients might be facing outside of their medical concerns. 
+                </p>
+                <p class="card-text">
+                    TRauma-Informed Social Needs Health AI Assistant (TRISHA)
+                    Copyright (c) 2025 Erica Smith
+                    All rights reserved
+
+                    No part of this application may be reproduced in any form without prior written permission
+                </p>
+                <hr>
+                <h6 class="mb-3">For questions on this application, please contact:</h6>
+                <ul>
+                    <li>Erica Smith, RN, MS, MBA, PhD Candidate</li>
+                    <li>University at Buffalo School of Nursing</li>
+                    <li>elsmith8@buffalo.edu</li>
+                </ul>
+                <div class="d-grid gap-2 col-md-6 mx-auto mt-4">
+                    <a href="{{ url_for('survey') }}" class="btn btn-primary">Start Questionnaire</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

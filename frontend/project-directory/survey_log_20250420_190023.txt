@@ -1,0 +1,264 @@
+SURVEY INTERACTION LOG
+=====================
+
+Timestamp: 2025-04-20 18:58:09
+Question: To get started, please enter the patient's randomized ID provided by the study coordinator.
+User Response: 123
+Bot Response: Thank you for providing the patient ID, which helps ensure their privacy as we proceed with the survey.
+--------------------------------------------------
+
+Timestamp: 2025-04-20 18:58:11
+Question: Instructions to set up the screening:
+
+                - Bring this device to the patient.
+
+                - Ensure they are in a quiet and comfortable space.
+
+                - Explain that their provider would like them to complete a health-related social needs questionnaire.
+
+                - Give the device to the patient and them time to complete the screening.
+
+                - Once they are done, please return the device to the study coordinator.
+                
+                - Click OK to proceed.
+User Response: OK
+Bot Response: Thank you. Proceeding to the main questionnaire.
+--------------------------------------------------
+
+Timestamp: 2025-04-20 18:58:17
+Question: Hi! I'm TRISHA, an AI-enabled chatbot whose job is to ask some questions from your doctor to help them understand things you may need help with outside of the reason for your visit today. Would you like to participate today?
+User Response: Yes
+Bot Response: That's great, I'm glad you're willing to share a bit about your situation so your care team can provide the best support possible.
+
+
+What name would you like me to use today?
+
+--------------------------------------------------
+
+Timestamp: 2025-04-20 18:58:24
+Question: What name would you like me to use today?
+User Response: Mary
+Bot Response: It's nice to meet you, Mary!
+
+
+Which pronouns do you prefer to use?
+Examples include she/her, he/him, they/them but you can enter any pronouns here. Or, you can skip this question by typing 'Skip'.
+
+--------------------------------------------------
+
+Timestamp: 2025-04-20 18:58:32
+Question: Which pronouns do you prefer to use?
+User Response: Skip
+Bot Response: No problem, Mary, I understand. Let's move on to the next question.
+
+
+Which of the following conversation styles do you prefer?
+1) Straightforward: I will provide you with the information you requested.
+2) Helpful: It can be tough to find information; I will help get you what you need.
+3) Easygoing: Sure thing! I would happy to grab that info for you; just bear with me for a moment.
+
+--------------------------------------------------
+
+Timestamp: 2025-04-20 18:58:40
+Question: Which of the following conversation styles do you prefer?
+User Response: Easygoing: Sure thing! I would happy to grab that info for you; just bear with me for a moment.
+Bot Response: Sounds good, Mary! I'm here to make this as smooth and easy as possible for you.
+
+
+What is your living situation today?:
+1) I have a steady place to live.
+2) I have a place to live today but I am worried about losing it in the future.
+3) I do not have a steady place to live (I am temporarily staying with others, in a hotel, in a shelter, living outside on the street, on a beach, in a car, abandoned building, bus or train station, or in a park.)
+4) I prefer not to answer this question.
+
+--------------------------------------------------
+
+Timestamp: 2025-04-20 18:58:47
+Question: What is your living situation today?:
+User Response: I have a steady place to live.
+Bot Response: Glad to hear you've got a steady place to call home, Mary - that's awesome!
+
+
+Think about the place you live. Do you have problems with any of the following? Choose all that apply:
+1) Pests, such as bugs, ants, or mice
+2) Mold
+3) Lead paint or pipes
+4) Lack of heat
+5) Oven or stove not working
+6) Smoke detectors missing or not working
+7) Water leaks
+8) None of the above
+9) I prefer not to answer this question.
+
+--------------------------------------------------
+
+Timestamp: 2025-04-20 18:58:55
+Question: Think about the place you live. Do you have problems with any of the following? Choose all that apply:
+User Response: None of the above
+Bot Response: Glad to hear your living situation is working out well for you, Mary!
+
+
+In the past 12 months, has the electric, gas, oil, or water company threatened to shut off services in your home?
+1) Yes
+2) No
+3) Already shut off
+4) I prefer not to answer this question.
+
+--------------------------------------------------
+
+Timestamp: 2025-04-20 18:59:06
+Question: In the past 12 months, has the electric, gas, oil, or water company threatened to shut off services in your home?
+User Response: Already shut off
+Bot Response: Aw man, that's rough. I'll make sure your doc knows so they can try to get you the support you need.
+
+
+Within the past 12 months, have you worried that your food would run out before you got money to buy more?
+1) Often true
+2) Sometimes true
+3) Never true
+4) I prefer not to answer this question.
+
+--------------------------------------------------
+
+Timestamp: 2025-04-20 18:59:15
+Question: Within the past 12 months, have you worried that your food would run out before you got money to buy more?
+User Response: Sometimes true
+Bot Response: I hear you, it's tough when you're not sure if you'll have enough food to get by.
+
+
+Within the past 12 months, did the food you bought just didn't last and you didn't have money to get more?
+1) Often true
+2) Sometimes true
+3) Never true
+4) I prefer not to answer this question.
+
+--------------------------------------------------
+
+Timestamp: 2025-04-20 18:59:22
+Question: Within the past 12 months, did the food you bought just didn't last and you didn't have money to get more?
+User Response: Sometimes true
+Bot Response: Aw man, I hear you - it's tough when money is tight and you're trying to make ends meet.
+
+
+In the past 12 months, has lack of reliable transportation kept you from medical appointments, meetings, work, or from getting things needed for daily living?
+1) Yes
+2) No
+3) I prefer not to answer this question.
+
+--------------------------------------------------
+
+Timestamp: 2025-04-20 18:59:29
+Question: In the past 12 months, has lack of reliable transportation kept you from medical appointments, meetings, work, or from getting things needed for daily living?
+User Response: No
+Bot Response: That's great to hear, Mary - reliable transportation is super important for taking care of yourself and getting things done.
+
+
+Do you want help finding or keeping work or a job?
+1) Yes, help finding work
+2) Yes, help keeping work
+3) I do not need or want help
+4) I prefer not to answer this question.
+
+--------------------------------------------------
+
+Timestamp: 2025-04-20 18:59:36
+Question: Do you want help finding or keeping work or a job?
+User Response: I do not need or want help
+Bot Response: Got it, thanks for letting me know.
+
+
+Do you want help with school or training? For example, starting or completing a job training or getting a high school diploma, GED, or equivalent?
+1) Yes
+2) No
+3) I prefer not to answer this question.
+
+--------------------------------------------------
+
+Timestamp: 2025-04-20 18:59:43
+Question: Do you want help with school or training? For example, starting or completing a job training or getting a high school diploma, GED, or equivalent?
+User Response: No
+Bot Response: Okay, thanks for letting me know!
+
+
+Because violence and abuse happens to a lot of people and affects their health, we are asking the following questions.  How often does anyone, including family and friends, physically hurt you?
+1) Never
+2) Rarely
+3) Sometimes
+4) Fairly often
+5) Frequently
+6) I prefer not to answer this question.
+
+--------------------------------------------------
+
+Timestamp: 2025-04-20 18:59:50
+Question: Because violence and abuse happens to a lot of people and affects their health, we are asking the following questions.  How often does anyone, including family and friends, physically hurt you?
+User Response: Never
+Bot Response: Thanks for sharing that with me, I'm glad to hear that you're safe from physical harm.
+
+
+How often does anyone, including family and friends, insult or talk down to you?
+1) Never
+2) Rarely
+3) Sometimes
+4) Fairly often
+5) Frequently
+6) I prefer not to answer this question.
+
+--------------------------------------------------
+
+Timestamp: 2025-04-20 18:59:56
+Question: How often does anyone, including family and friends, insult or talk down to you?
+User Response: Sometimes
+Bot Response: That's rough, thanks for sharing that with me.
+
+
+How often does anyone, including family and friends, threaten you with harm?
+1) Never
+2) Rarely
+3) Sometimes
+4) Fairly often
+5) Frequently
+6) I prefer not to answer this question.
+
+--------------------------------------------------
+
+Timestamp: 2025-04-20 19:00:03
+Question: How often does anyone, including family and friends, threaten you with harm?
+User Response: Never
+Bot Response: That's good to know, and I'm glad to hear that you're not experiencing threats of harm.
+
+
+How often does anyone, including family and friends, scream or curse at you?
+1) Never
+2) Rarely
+3) Sometimes
+4) Fairly often
+5) Frequently
+6) I prefer not to answer this question.
+
+--------------------------------------------------
+
+Timestamp: 2025-04-20 19:00:10
+Question: How often does anyone, including family and friends, scream or curse at you?
+User Response: Never
+Bot Response: That's great to hear, Mary - everyone deserves to feel safe and respected in their relationships.
+
+
+That was the last question in this survey.
+                Would you like to view a summary of your responses?
+1) Yes
+2) No
+
+--------------------------------------------------
+
+Timestamp: 2025-04-20 19:00:23
+Question: That was the last question in this survey.
+                Would you like to view a summary of your responses?
+User Response: Yes
+Bot Response: Here's a summary of your responses:
+
+Thanks for sharing this really important information today, Mary. I know how difficult it can be to answer sensitive questions like these. It's great to hear that you have a steady place to live and aren't experiencing any threats or physical harm from others. However, it seems like you've had some challenges with utilities being shut off and sometimes experience people insulting or talking down to you, which can be really tough. I'm also glad to hear that transportation and food haven't been major obstacles for you lately, although it sounds like there are times when it's a worry. I'll be sure to share this information with your provider so that they are aware and can talk to you about any of these things if you would like.
+
+Thank you for completing the survey.
+--------------------------------------------------
+
